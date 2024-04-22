@@ -1,6 +1,5 @@
 from node import Node
 
-
 class Tree:
     """ Tree class for binary tree """
 
@@ -62,27 +61,46 @@ class Tree:
             return self._find(data, node.right)
 
     def deleteTree(self):
-        # TODO 1
+        """Sterge tot arborele"""
         self.root = None
 
     def printTree(self):
-        # TODO 1
+        """Printeaza copacul in inordine"""
         if self.root is not None:
             self._printInorderTree(self.root)
 
     def _printInorderTree(self, node):
-        # TODO 1
+        """
+        Printeaza copacul in forma: subarbore stang - radacina - subarbore drept
+        @param node: Nodul din care porneste printarea
+        """
         if node is not None:
             self._printInorderTree(node.left)
             print(str(node.data) + ' ')
             self._printInorderTree(node.right)
 
     def _printPreorderTree(self, node):
-        # TODO 2
-        pass
+        if node is not None:
+            print(str(node.data) + ' ')
+            self._printPreorderTree(node.left)
+            self._printPreorderTree(node.right)
+            
 
     def _printPostorderTree(self, node):
-        # TODO 2
-        pass
+        if node is not None:
+            self._printPreorderTree(node.left)
+            self._printPreorderTree(node.right)
+            print(str(node.data) + ' ')
 
 
+def test_find():
+    test = Tree()
+    test.add(1)
+    test.add(2)
+    test.add(3)
+    find_1 = test.find(1)
+    assert find_1 != None and find_1.data == 1
+    find_4 = test.find(4)
+    assert find_4 == None
+    
+    test.deleteTree()
